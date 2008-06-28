@@ -2,18 +2,17 @@ package Rinchi::XMLSchema;
 
 use 5.006;
 use strict;
-use FileHandle;
 use strict;
 use Carp;
 use XML::Parser;
-use Class::ISA;
+#use Class::ISA;
 
 our @ISA = qw();
 
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 =head1 NAME
 
@@ -1847,21 +1846,17 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of All class
 
-Rinchi::XMLSchema::All - Module for creating XML Schema All objects.
+Rinchi::XMLSchema::All is used for creating XML Schema All objects.
 
-=head1 SYNOPSIS
+ id = ID
+ maxOccurs = 1 : 1
+ minOccurs = (0 | 1) : 1
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, element*)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -2004,21 +1999,15 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Annotation class
 
-Rinchi::XMLSchema::Annotation - Module for creating XML Schema Annotation objects.
+Rinchi::XMLSchema::Annotation is used for creating XML Schema Annotation objects.
 
-=head1 SYNOPSIS
+ id = ID
+ {any attributes with non-schema namespace ...}>
+ Content: (appinfo | documentation)*
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -2048,21 +2037,19 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Any class
 
-Rinchi::XMLSchema::Any - Module for creating XML Schema Any objects.
+Rinchi::XMLSchema::Any is used for creating XML Schema Any objects.
 
-=head1 SYNOPSIS
+  id = ID
+  maxOccurs = (nonNegativeInteger | unbounded)  : 1
+  minOccurs = nonNegativeInteger : 1
+  namespace = ((##any | ##other) | List of (anyURI | (##targetNamespace | ##local)) )  : ##any
+  processContents = (lax | skip | strict) : strict
+  {any attributes with non-schema namespace ...}>
+  Content: (annotation?)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -2267,21 +2254,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of AnyAttribute class
 
-Rinchi::XMLSchema::AnyAttribute - Module for creating XML Schema AnyAttribute objects.
+Rinchi::XMLSchema::AnyAttribute is used for creating XML Schema AnyAttribute objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -2408,21 +2385,15 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Appinfo class
 
-Rinchi::XMLSchema::Appinfo - Module for creating XML Schema Appinfo objects.
+Rinchi::XMLSchema::Appinfo is used for creating XML Schema Appinfo objects.
 
-=head1 SYNOPSIS
+ source = anyURI
+ {any attributes with non-schema namespace ...}>
+ Content: ({any})*
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -2490,21 +2461,22 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Attribute class
 
-Rinchi::XMLSchema::Attribute - Module for creating XML Schema Attribute objects.
+Rinchi::XMLSchema::Attribute is used for creating XML Schema Attribute objects.
 
-=head1 SYNOPSIS
+ default = string
+ fixed = string
+ form = (qualified | unqualified)
+ id = ID
+ name = NCName
+ ref = QName
+ type = QName
+ use = (optional | prohibited | required) : optional
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, simpleType?)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -2802,21 +2774,17 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of AttributeGroup class
 
-Rinchi::XMLSchema::AttributeGroup - Module for creating XML Schema AttributeGroup objects.
+Rinchi::XMLSchema::AttributeGroup is used for creating XML Schema AttributeGroup objects.
 
-=head1 SYNOPSIS
+ id = ID
+ name = NCName
+ ref = QName
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, ((attribute | attributeGroup)*, anyAttribute?))
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -2967,21 +2935,17 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Choice class
 
-Rinchi::XMLSchema::Choice - Module for creating XML Schema Choice objects.
+Rinchi::XMLSchema::Choice is used for creating XML Schema Choice objects.
 
-=head1 SYNOPSIS
+ id = ID
+ maxOccurs = (nonNegativeInteger | unbounded)  : 1
+ minOccurs = nonNegativeInteger : 1
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, (element | group | choice | sequence | any)*)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -3128,21 +3092,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of ComplexContent class
 
-Rinchi::XMLSchema::ComplexContent - Module for creating XML Schema ComplexContent objects.
+Rinchi::XMLSchema::ComplexContent is used for creating XML Schema ComplexContent objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -3262,21 +3216,20 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of ComplexType class
 
-Rinchi::XMLSchema::ComplexType - Module for creating XML Schema ComplexType objects.
+Rinchi::XMLSchema::ComplexType is used for creating XML Schema ComplexType objects.
 
-=head1 SYNOPSIS
+ abstract = boolean : false
+ block = (#all | List of (extension | restriction))
+ final = (#all | List of (extension | restriction))
+ id = ID
+ mixed = boolean : false
+ name = NCName
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, ((attribute | attributeGroup)*, anyAttribute?))))
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -3514,21 +3467,16 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Documentation class
 
-Rinchi::XMLSchema::Documentation - Module for creating XML Schema Documentation objects.
+Rinchi::XMLSchema::Documentation is used for creating XML Schema Documentation objects.
 
-=head1 SYNOPSIS
+ source = anyURI
+ xml:lang = language
+ {any attributes with non-schema namespace ...}>
+ Content: ({any})*
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -3613,21 +3561,28 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Element class
 
-Rinchi::XMLSchema::Element - Module for creating XML Schema Element objects.
+Rinchi::XMLSchema::Element is used for creating XML Schema Element objects.
 
-=head1 SYNOPSIS
+ abstract = boolean : false
+ block = (#all | List of (extension | restriction | substitution))
+ default = string
+ final = (#all | List of (extension | restriction))
+ fixed = string
+ form = (qualified | unqualified)
+ id = ID
+ maxOccurs = (nonNegativeInteger | unbounded)  : 1
+ minOccurs = nonNegativeInteger : 1
+ name = NCName
+ nillable = boolean : false
+ ref = QName
+ substitutionGroup = QName
+ type = QName
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, ((simpleType | complexType)?, (unique | key | keyref)*))
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -4099,21 +4054,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Enumeration class
 
-Rinchi::XMLSchema::Enumeration - Module for creating XML Schema Enumeration objects.
+Rinchi::XMLSchema::Enumeration is used for creating XML Schema Enumeration objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -4209,21 +4154,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Extension class
 
-Rinchi::XMLSchema::Extension - Module for creating XML Schema Extension objects.
+Rinchi::XMLSchema::Extension is used for creating XML Schema Extension objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -4343,21 +4278,16 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Field class
 
-Rinchi::XMLSchema::Field - Module for creating XML Schema Field objects.
+Rinchi::XMLSchema::Field is used for creating XML Schema Field objects.
 
-=head1 SYNOPSIS
+ id = ID
+ xpath = a subset of XPath expression, see below
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -4453,21 +4383,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of FractionDigits class
 
-Rinchi::XMLSchema::FractionDigits - Module for creating XML Schema FractionDigits objects.
+Rinchi::XMLSchema::FractionDigits is used for creating XML Schema FractionDigits objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -4594,21 +4514,19 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Group class
 
-Rinchi::XMLSchema::Group - Module for creating XML Schema Group objects.
+Rinchi::XMLSchema::Group is used for creating XML Schema Group objects.
 
-=head1 SYNOPSIS
+ id = ID
+ maxOccurs = (nonNegativeInteger | unbounded)  : 1
+ minOccurs = nonNegativeInteger : 1
+ name = NCName
+ ref = QName
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, (all | choice | sequence)?)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -4817,21 +4735,17 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Import class
 
-Rinchi::XMLSchema::Import - Module for creating XML Schema Import objects.
+Rinchi::XMLSchema::Import is used for creating XML Schema Import objects.
 
-=head1 SYNOPSIS
+ id = ID
+ namespace = anyURI
+ schemaLocation = anyURI
+ {any attributes with non-schema namespace . . .}>
+ Content: (annotation?)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -4954,21 +4868,16 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Include class
 
-Rinchi::XMLSchema::Include - Module for creating XML Schema Include objects.
+Rinchi::XMLSchema::Include is used for creating XML Schema Include objects.
 
-=head1 SYNOPSIS
+ id = ID
+ schemaLocation = anyURI
+ {any attributes with non-schema namespace . . .}>
+ Content: (annotation?)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -5064,21 +4973,16 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Key class
 
-Rinchi::XMLSchema::Key - Module for creating XML Schema Key objects.
+Rinchi::XMLSchema::Key is used for creating XML Schema Key objects.
 
-=head1 SYNOPSIS
+ id = ID
+ name = NCName
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, (selector, field+))
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -5198,21 +5102,17 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Keyref class
 
-Rinchi::XMLSchema::Keyref - Module for creating XML Schema Keyref objects.
+Rinchi::XMLSchema::Keyref is used for creating XML Schema Keyref objects.
 
-=head1 SYNOPSIS
+ id = ID
+ name = NCName
+ refer = QName
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, (selector, field+))
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -5363,21 +5263,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Length class
 
-Rinchi::XMLSchema::Length - Module for creating XML Schema Length objects.
+Rinchi::XMLSchema::Length is used for creating XML Schema Length objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -5504,21 +5394,16 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of List class
 
-Rinchi::XMLSchema::List - Module for creating XML Schema List objects.
+Rinchi::XMLSchema::List is used for creating XML Schema List objects.
 
-=head1 SYNOPSIS
+ id = ID
+ itemType = QName
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, simpleType?)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -5638,21 +5523,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of MaxExclusive class
 
-Rinchi::XMLSchema::MaxExclusive - Module for creating XML Schema MaxExclusive objects.
+Rinchi::XMLSchema::MaxExclusive is used for creating XML Schema MaxExclusive objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -5779,21 +5654,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of MaxInclusive class
 
-Rinchi::XMLSchema::MaxInclusive - Module for creating XML Schema MaxInclusive objects.
+Rinchi::XMLSchema::MaxInclusive is used for creating XML Schema MaxInclusive objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -5920,21 +5785,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of MaxLength class
 
-Rinchi::XMLSchema::MaxLength - Module for creating XML Schema MaxLength objects.
+Rinchi::XMLSchema::MaxLength is used for creating XML Schema MaxLength objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -6061,21 +5916,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of MinExclusive class
 
-Rinchi::XMLSchema::MinExclusive - Module for creating XML Schema MinExclusive objects.
+Rinchi::XMLSchema::MinExclusive is used for creating XML Schema MinExclusive objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -6202,21 +6047,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of MinInclusive class
 
-Rinchi::XMLSchema::MinInclusive - Module for creating XML Schema MinInclusive objects.
+Rinchi::XMLSchema::MinInclusive is used for creating XML Schema MinInclusive objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -6343,21 +6178,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of MinLength class
 
-Rinchi::XMLSchema::MinLength - Module for creating XML Schema MinLength objects.
+Rinchi::XMLSchema::MinLength is used for creating XML Schema MinLength objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -6484,21 +6309,18 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Notation class
 
-Rinchi::XMLSchema::Notation - Module for creating XML Schema Notation objects.
+Rinchi::XMLSchema::Notation is used for creating XML Schema Notation objects.
 
-=head1 SYNOPSIS
+ id = ID
+ name = NCName
+ public = token
+ system = anyURI
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -6652,21 +6474,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Pattern class
 
-Rinchi::XMLSchema::Pattern - Module for creating XML Schema Pattern objects.
+Rinchi::XMLSchema::Pattern is used for creating XML Schema Pattern objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -6762,21 +6574,16 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Redefine class
 
-Rinchi::XMLSchema::Redefine - Module for creating XML Schema Redefine objects.
+Rinchi::XMLSchema::Redefine is used for creating XML Schema Redefine objects.
 
-=head1 SYNOPSIS
+ id = ID
+ schemaLocation = anyURI
+ {any attributes with non-schema namespace . . .}>
+ Content: (annotation | (simpleType | complexType | group | attributeGroup))*
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -6892,21 +6699,16 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Restriction class
 
-Rinchi::XMLSchema::Restriction - Module for creating XML Schema Restriction objects.
+Rinchi::XMLSchema::Restriction is used for creating XML Schema Restriction objects.
 
-=head1 SYNOPSIS
+ base = QName
+ id = ID
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, (simpleType?, (minExclusive | minInclusive | maxExclusive | maxInclusive | totalDigits | fractionDigits | length | minLength | maxLength | enumeration | whiteSpace | pattern)*))
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -7026,21 +6828,22 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Schema class
 
-Rinchi::XMLSchema::Schema - Module for creating XML Schema Schema objects.
+Rinchi::XMLSchema::Schema is used for creating XML Schema Schema objects.
 
-=head1 SYNOPSIS
+ attributeFormDefault = (qualified | unqualified) : unqualified
+ blockDefault = (#all | List of (extension | restriction | substitution))  : ''
+ elementFormDefault = (qualified | unqualified) : unqualified
+ finalDefault = (#all | List of (extension | restriction | list | union))  : ''
+ id = ID
+ targetNamespace = anyURI
+ version = token
+ xml:lang = language
+ {any attributes with non-schema namespace . . .}>
+ Content: ((include | import | redefine | annotation)*, (((simpleType | complexType | group | attributeGroup) | element | attribute | notation), annotation*)*)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -7565,21 +7368,16 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Selector class
 
-Rinchi::XMLSchema::Selector - Module for creating XML Schema Selector objects.
+Rinchi::XMLSchema::Selector is used for creating XML Schema Selector objects.
 
-=head1 SYNOPSIS
+ id = ID
+ xpath = a subset of XPath expression, see below
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -7675,21 +7473,17 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Sequence class
 
-Rinchi::XMLSchema::Sequence - Module for creating XML Schema Sequence objects.
+Rinchi::XMLSchema::Sequence is used for creating XML Schema Sequence objects.
 
-=head1 SYNOPSIS
+ id = ID
+ maxOccurs = (nonNegativeInteger | unbounded)  : 1
+ minOccurs = nonNegativeInteger : 1
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, (element | group | choice | sequence | any)*)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -7836,21 +7630,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of SimpleContent class
 
-Rinchi::XMLSchema::SimpleContent - Module for creating XML Schema SimpleContent objects.
+Rinchi::XMLSchema::SimpleContent is used for creating XML Schema SimpleContent objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -7939,21 +7723,17 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of SimpleType class
 
-Rinchi::XMLSchema::SimpleType - Module for creating XML Schema SimpleType objects.
+Rinchi::XMLSchema::SimpleType is used for creating XML Schema SimpleType objects.
 
-=head1 SYNOPSIS
+ final = (#all | List of (list | union | restriction))
+ id = ID
+ name = NCName
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, (restriction | list | union))
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -8100,21 +7880,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of TotalDigits class
 
-Rinchi::XMLSchema::TotalDigits - Module for creating XML Schema TotalDigits objects.
+Rinchi::XMLSchema::TotalDigits is used for creating XML Schema TotalDigits objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -8241,21 +8011,16 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Union class
 
-Rinchi::XMLSchema::Union - Module for creating XML Schema Union objects.
+Rinchi::XMLSchema::Union is used for creating XML Schema Union objects.
 
-=head1 SYNOPSIS
+ id = ID
+ memberTypes = List of QName
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, simpleType*)
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -8375,21 +8140,16 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of Unique class
 
-Rinchi::XMLSchema::Unique - Module for creating XML Schema Unique objects.
+Rinchi::XMLSchema::Unique is used for creating XML Schema Unique objects.
 
-=head1 SYNOPSIS
+ id = ID
+ name = NCName
+ {any attributes with non-schema namespace ...}>
+ Content: (annotation?, (selector, field+))
 
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
@@ -8509,21 +8269,11 @@ our @ISA = qw(Rinchi::XMLSchema);
 our @EXPORT = qw();
 our @EXPORT_OK = qw();
 
-=head1 NAME
+=head1 DESCRIPTION of WhiteSpace class
 
-Rinchi::XMLSchema::WhiteSpace - Module for creating XML Schema WhiteSpace objects.
+Rinchi::XMLSchema::WhiteSpace is used for creating XML Schema WhiteSpace objects.
 
-=head1 SYNOPSIS
-
-  use Rinchi::XMLSchema;
-
-=head1 DESCRIPTION
-
-  Write a description.
-
-=head2 EXPORT
-
-None by default.
+=cut
 
 #===============================================================================
 
